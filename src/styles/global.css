@@ -2,6 +2,7 @@ html,
 body {
     padding: 0;
     margin: 0;
+    font-family: "Noto Sans", sans-serif;
 }
 
 * {
@@ -19,4 +20,9 @@ a:hover {
 img {
     display: block;
     max-width: 100%;
+}
+
+:root {
+    --black: rgb(51, 51, 51);
+    --brand: rgb(95, 0, 128);
 }
