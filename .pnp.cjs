@@ -34,6 +34,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/styled", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:11.10.6"],\
             ["@testing-library/jest-dom", "npm:5.16.5"],\
             ["@testing-library/react", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:14.0.0"],\
+            ["@testing-library/user-event", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:14.4.3"],\
             ["@types/jest", "npm:29.4.0"],\
             ["@types/jest-plugin-context", "npm:2.9.5"],\
             ["@types/node", "npm:18.14.6"],\
@@ -1924,6 +1925,21 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["pretty-format", "npm:27.5.1"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:9.0.1", {\
+          "packageLocation": "./.yarn/cache/@testing-library-dom-npm-9.0.1-a05e7f233d-fa3d4097d0.zip/node_modules/@testing-library/dom/",\
+          "packageDependencies": [\
+            ["@testing-library/dom", "npm:9.0.1"],\
+            ["@babel/code-frame", "npm:7.18.6"],\
+            ["@babel/runtime", "npm:7.21.0"],\
+            ["@types/aria-query", "npm:5.0.1"],\
+            ["aria-query", "npm:5.1.3"],\
+            ["chalk", "npm:4.1.2"],\
+            ["dom-accessibility-api", "npm:0.5.16"],\
+            ["lz-string", "npm:1.5.0"],\
+            ["pretty-format", "npm:27.5.1"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["@testing-library/jest-dom", [\
@@ -1968,6 +1984,27 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "@types/react",\
             "react-dom",\
             "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@testing-library/user-event", [\
+        ["npm:14.4.3", {\
+          "packageLocation": "./.yarn/cache/@testing-library-user-event-npm-14.4.3-2d1a75355f-852c48ea6d.zip/node_modules/@testing-library/user-event/",\
+          "packageDependencies": [\
+            ["@testing-library/user-event", "npm:14.4.3"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:14.4.3", {\
+          "packageLocation": "./.yarn/__virtual__/@testing-library-user-event-virtual-93d02056a0/0/cache/@testing-library-user-event-npm-14.4.3-2d1a75355f-852c48ea6d.zip/node_modules/@testing-library/user-event/",\
+          "packageDependencies": [\
+            ["@testing-library/user-event", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:14.4.3"],\
+            ["@testing-library/dom", "npm:9.0.1"],\
+            ["@types/testing-library__dom", null]\
+          ],\
+          "packagePeers": [\
+            "@types/testing-library__dom"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -3850,6 +3887,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/styled", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:11.10.6"],\
             ["@testing-library/jest-dom", "npm:5.16.5"],\
             ["@testing-library/react", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:14.0.0"],\
+            ["@testing-library/user-event", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:14.4.3"],\
             ["@types/jest", "npm:29.4.0"],\
             ["@types/jest-plugin-context", "npm:2.9.5"],\
             ["@types/node", "npm:18.14.6"],\
