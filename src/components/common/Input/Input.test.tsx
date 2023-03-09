@@ -21,17 +21,22 @@ describe("<Input /> component", () => {
     const user = userEvent.setup();
 
     test("<Input type='text'/> requirepProps입력 후 렌더링", () => {
-        const renderInputComponent = renderInput(props());
+        const renderInputComponent = renderInput(
+            props({
+                id: "input-id",
+                value: "inputValue",
+                onChange: handleChange,
+            })
+        );
 
         const input = renderInputComponent.getByRole("textbox");
         expect(input).toBeInTheDocument();
-        expect(input).toHaveProperty("id", "");
-        expect(input).toHaveProperty("name", "");
-        expect(input).toHaveProperty("value", "");
+        expect(input).toHaveProperty("value", "inputValue");
         expect(input).toHaveProperty("type", "text");
         expect(input).toHaveProperty("placeholder", "테스트");
 
         const container = renderInputComponent.container.firstChild;
+        expect(container).toHaveProperty("id", "input-id");
         expect(container).toHaveStyle("border: 1px solid rgb(221, 221, 221);");
     });
 

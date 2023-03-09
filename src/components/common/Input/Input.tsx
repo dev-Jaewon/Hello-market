@@ -4,7 +4,6 @@ import { ChangeEvent, MouseEvent } from "react";
 export type InputProps = {
     type: "text" | "password";
     id?: string;
-    name?: string;
     value?: string | number;
     placeholder: string;
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -20,7 +19,7 @@ export const Input = (props: InputProps) => {
     };
 
     return (
-        <Container onClick={handleClick}>
+        <Container onClick={handleClick} id={props.id}>
             <input
                 type={props.type}
                 value={props.value}
