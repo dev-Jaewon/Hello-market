@@ -1,15 +1,16 @@
-import * as React from "react";
 import { AppProps } from "next/app";
 import { Provider } from "react-redux";
-import { store } from "../store";
+import { setupStore } from "../store";
 
 import "../styles/global.css";
+import { Modal } from "../components/common/Modal";
 
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <>
-            <Provider store={store}>
+            <Provider store={setupStore()}>
                 <Component {...pageProps} />
+                <Modal />
             </Provider>
         </>
     );
