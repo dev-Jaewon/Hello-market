@@ -51,6 +51,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:18.2.0"],\
             ["react-redux", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:8.0.5"],\
+            ["redux", "npm:4.2.1"],\
             ["ts-jest", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:29.0.5"],\
             ["ts-node", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:10.9.1"],\
             ["typescript", "patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=ad5954"],\
@@ -3956,6 +3957,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:18.2.0"],\
             ["react-redux", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:8.0.5"],\
+            ["redux", "npm:4.2.1"],\
             ["ts-jest", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:29.0.5"],\
             ["ts-node", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:10.9.1"],\
             ["typescript", "patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=ad5954"],\
@@ -6130,7 +6132,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-dom", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:18.2.0"],\
             ["react-is", "npm:18.2.0"],\
             ["react-native", null],\
-            ["redux", null],\
+            ["redux", "npm:4.2.1"],\
             ["use-sync-external-store", "virtual:8d48c43abf555d178e0adb9f677e1343df7d41822c300d3e03813c6053c16bd5b5b52f1f1da675bca8265685221446d8b4d8de370d45b8b1666293524b43c61f#npm:1.2.0"]\
           ],\
           "packagePeers": [\

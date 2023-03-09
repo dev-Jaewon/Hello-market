@@ -1,11 +1,19 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import type { PreloadedState } from "@reduxjs/toolkit";
 
-// redux slice
+// slice
+import { modalStateSlice } from "./reducer/modal";
 
-export const store = configureStore({
-    reducer: {},
+const rootReducer = combineReducers({
+    modalState: modalStateSlice.reducer,
 });
 
-export type RootState = ReturnType<typeof store.getState>;
+export const setupStore = (preloadedState?: PreloadedState<RootState>) =>
+    configureStore({
+        reducer: rootReducer,
+        preloadedState,
+    });
 
-export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof setupStore>;
+export type AppDispatch = AppStore["dispatch"];
