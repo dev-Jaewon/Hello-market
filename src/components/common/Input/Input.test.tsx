@@ -16,13 +16,24 @@ describe("<Input /> component", () => {
             ...optionalProps,
         });
 
-    const props = requireProps({ type: "text", placeholder: "테스트" });
+    const typeTextRequirepProps = requireProps({
+        type: "text",
+        placeholder: "테스트",
+    });
+    const typePasswordRequirepProps = requireProps({
+        type: "password",
+        placeholder: "테스트",
+    });
     const handleChange = jest.fn();
     const user = userEvent.setup();
 
+    beforeEach(() => {
+        handleChange.mockReset();
+    });
+
     test("<Input type='text'/> requirepProps입력 후 렌더링", () => {
         const renderInputComponent = renderInput(
-            props({
+            typeTextRequirepProps({
                 id: "input-id",
                 value: "inputValue",
                 onChange: handleChange,
@@ -40,10 +51,10 @@ describe("<Input /> component", () => {
         expect(container).toHaveStyle("border: 1px solid rgb(221, 221, 221);");
     });
 
-    test("onChange , value 테스트", () => {
-        const input = renderInput(props({ onChange: handleChange })).getByRole(
-            "textbox"
-        );
+    test("type='text' => onChange , value 테스트", () => {
+        const input = renderInput(
+            typeTextRequirepProps({ onChange: handleChange })
+        ).getByRole("textbox");
 
         fireEvent.change(input, { target: { value: "테스트 인풋" } });
 
@@ -52,7 +63,7 @@ describe("<Input /> component", () => {
     });
 
     test("click 했을 경우 focus 발생 체크", async () => {
-        const renderInputComponent = renderInput(props());
+        const renderInputComponent = renderInput(typeTextRequirepProps());
         const input = renderInputComponent.getByRole("textbox");
 
         await user.click(input);
@@ -69,5 +80,46 @@ describe("<Input /> component", () => {
 
         // JSdom 이슈
         // github-issues: https://github.com/jsdom/jsdom/issues/3359
+    });
+
+    test("<Input type='password'/> requirepProps입력 후 렌더링", () => {
+        const renderInputComponent = renderInput(
+            typePasswordRequirepProps({
+                id: "input-id",
+                value: "inputValue",
+                onChange: handleChange,
+            })
+        );
+
+        const input =
+            renderInputComponent.container.querySelector(
+                "#input-id"
+            )?.firstChild;
+        expect(input).toBeInTheDocument();
+        expect(input).toHaveProperty("value", "inputValue");
+        expect(input).toHaveProperty("type", "password");
+        expect(input).toHaveProperty("placeholder", "테스트");
+
+        const container = renderInputComponent.container.firstChild;
+        expect(container).toHaveProperty("id", "input-id");
+        expect(container).toHaveStyle("border: 1px solid rgb(221, 221, 221);");
+    });
+
+    test("type='password' => onChange , value 테스트", () => {
+        const renderInputComponent = renderInput(
+            typePasswordRequirepProps({
+                id: "input-id",
+                onChange: handleChange,
+            })
+        );
+
+        const inputPassword = renderInputComponent.container.querySelector(
+            "#input-id"
+        )?.firstChild as HTMLInputElement;
+
+        fireEvent.change(inputPassword, { target: { value: "테스트 인풋" } });
+
+        expect(handleChange).toHaveBeenCalledTimes(1);
+        expect(inputPassword).toHaveValue("테스트 인풋");
     });
 });
