@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { Button, ButtonProps } from "./Button";
 import { matchers } from "@emotion/jest";
 expect.extend(matchers);
@@ -23,6 +23,7 @@ describe("<Button /> component", () => {
             "width:300px;height:200px;border-radius: 4px"
         );
     };
+    const handleClick = jest.fn();
 
     test("버튼 require Props 렌더링", () => {
         const { container } = renderButton(props());
@@ -57,5 +58,14 @@ describe("<Button /> component", () => {
         const { container } = renderButton(props({ fillColor: false }));
         testRequireProps(container);
         expect(container).toHaveStyle("background: unset");
+    });
+
+    test("버튼 onclick 이벤트 발생 체크", () => {
+        const button = renderButton(props({ onClick: handleClick })).getByRole(
+            "button"
+        );
+
+        fireEvent.click(button);
+        expect(handleClick).toBeCalledTimes(1);
     });
 });

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { MouseEvent } from "react";
 
 export type ButtonProps = {
     children: string; //ReactNode 타입자체가 option Type으로 get Require 유틸리티 타입으로 못가져와서 string으로 지정
@@ -7,6 +8,7 @@ export type ButtonProps = {
     fillColor?: boolean;
     outline?: boolean;
     disabled?: boolean;
+    onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 };
 
 export const Button = (props: ButtonProps) => {
