@@ -10,7 +10,7 @@ export type ItemPropsType = {
 export const NavItem = (props: ItemPropsType) => {
     return (
         <ItemContainer current={props.current}>
-            <Test href={props.path}>{props.value}</Test>
+            <A href={props.path}>{props.value}</A>
         </ItemContainer>
     );
 };
@@ -26,12 +26,14 @@ const ItemContainer = styled.li<Pick<ItemPropsType, "current">>`
     color: ${({ current }) => (current ? "var(--brand)" : "var(--black)")};
 `;
 
-const Test = styled(Link)`
+const A = styled(Link)`
+    color: inherit;
     height: fit-content;
     cursor: pointer;
 
     &:hover {
         color: var(--brand);
+        text-decoration: unset;
         border-bottom: 1px solid var(--brand);
     }
 `;

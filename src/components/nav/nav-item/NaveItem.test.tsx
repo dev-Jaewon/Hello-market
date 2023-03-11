@@ -1,6 +1,7 @@
 import { ItemPropsType, NavItem } from "./NavItem";
 import { matchers } from "@emotion/jest";
 import { renderWithProviders } from "../../../utils/test-utils";
+import { fireEvent } from "@testing-library/react";
 expect.extend(matchers);
 
 describe("<NavItem /> component", () => {
@@ -8,7 +9,6 @@ describe("<NavItem /> component", () => {
 
     const renderComponent = (props: ItemPropsType) => {
         const render = renderWithProviders(<NavItem {...props} />);
-
         const menuItem = render.getByRole("listitem");
         return { render, menuItem };
     };
@@ -20,8 +20,12 @@ describe("<NavItem /> component", () => {
     });
 
     test("현재 페이지 일 경우 스타일", async () => {
-        const { menuItem } = renderComponent({ ...initProps, current: true });
+        const { menuItem } = renderComponent({
+            ...initProps,
+            current: true,
+        });
 
+        fireEvent.mouseEnter(menuItem);
         expect(menuItem).toHaveStyleRule("color", "var(--brand)");
     });
 });
