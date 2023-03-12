@@ -20,5 +20,13 @@ const ButtonStyle = styled.button<ButtonProps>`
     border: ${({ outline }) => (outline ? "1px solid var(--brand)" : "none")};
     width: ${({ width }) => `${width}px`};
     height: ${({ height }) => `${height}px`};
+    color: ${({ fillColor }) => (fillColor ? "white" : "var(--brand)")};
     border-radius: 4px;
+    cursor: pointer;
+
+    &:disabled {
+        color: #ccc;
+        border: 1px solid #ccc;
+        cursor: unset;
+    }
 `;
