@@ -29,6 +29,7 @@ export const NavCategory = () => {
 const NavCategoryContainer = styled.div`
     position: relative;
     display: flex;
+    height: 100%;
     align-items: center;
     font-size: 18px;
     font-weight: 500;

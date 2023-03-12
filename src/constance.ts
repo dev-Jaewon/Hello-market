@@ -45,3 +45,21 @@ export const validations = {
         ],
     },
 };
+
+export const MENUS = [
+    { path: "", value: "신상품" },
+    { path: "", value: "베스트" },
+    { path: "", value: "알뜰쇼핑" },
+    { path: "", value: "특가/혜택" },
+];
+
+export const CATEGORY_LIST = [
+    {
+        icon: "",
+        value: "채소",
+    },
+    {
+        icon: "",
+        value: "과일·견과·쌀",
+    },
+];

@@ -19,10 +19,11 @@ const ItemContainer = styled.li<Pick<ItemPropsType, "current">>`
     display: flex;
     justify-content: center;
     margin-top: 18px;
-    width: 150px;
+    width: 100%;
     height: 37px;
     font-size: 16px;
     font-weight: 700;
+    white-space: nowrap;
     color: ${({ current }) => (current ? "var(--brand)" : "var(--black)")};
 `;
 
