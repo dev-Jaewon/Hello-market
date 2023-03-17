@@ -6,6 +6,10 @@ import "../styles/global.css";
 import { Modal } from "../components/common/Modal";
 import { Header } from "../components/Header";
 
+if (process.env.NODE_ENV === "development") {
+    require("../__mocks__");
+}
+
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <>

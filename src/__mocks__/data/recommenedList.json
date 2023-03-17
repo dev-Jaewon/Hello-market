@@ -1,0 +1,14 @@
+{
+    "data": [
+        {
+            "id": "11241232",
+            "name": "[맛있쥬~] 마카롱",
+            "price": 9000,
+            "describe": "쫀득쫀득 맛있는 마카롱",
+            "imgUrl": "https://pixabay.com/get/g5b51e9777a19dc6361194ea1ac6b9eca2e9be1a1c643f3128e8d8f06519107138e0f421bafbffc5d7adb85f4474316434803ca25522d518c1717faf411345294f59946820e127e98a178e6bf0e42caa0_1280.jpg",
+            "disCountRate": 10,
+            "comentLength": 0,
+            "beforeDiscountPrice": 10000
+        }
+    ]
+}
