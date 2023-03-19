@@ -20,7 +20,7 @@ describe("<RecommendedList />", () => {
 
     test("provided props 렌더링", () => {
         const { title, listSlider, description } = renderComponent({
-            ...mockData.result,
+            ...mockData.result[0],
         });
 
         expect(title).toBeInTheDocument();
@@ -30,7 +30,7 @@ describe("<RecommendedList />", () => {
 
     test("optional props 렌더링", () => {
         const { title, description } = renderComponent({
-            list: mockData.result.list,
+            list: mockData.result[0].list,
         });
 
         expect(title).not.toBeInTheDocument();

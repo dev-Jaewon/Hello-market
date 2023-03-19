@@ -13,6 +13,7 @@ import {
 } from "../recommendedItem/recommendedItem";
 
 export type RecommendedListType = {
+    id: string | number;
     title?: string;
     description?: string;
     list: Array<RecommendedItemType>;
@@ -25,8 +26,8 @@ export const RecommendedList = (props: RecommendedListType) => {
         slidesPerView: 4,
         slidesPerGroup: 4,
         navigation: {
-            nextEl: ".next-button",
-            prevEl: ".prev-button",
+            nextEl: `.next-button-${props.id}`,
+            prevEl: `.prev-button-${props.id}`,
         },
     };
     return (
@@ -45,16 +46,16 @@ export const RecommendedList = (props: RecommendedListType) => {
 
             <SwiperContainer>
                 <i
-                    className="swiper-button next-button"
+                    className={`swiper-button prev prev-button-${props.id}`}
                     aria-label="이전 상품리스트 버튼"
                 >
-                    <IoIosArrowForward size={30} />
+                    <IoIosArrowBack size={30} />
                 </i>
                 <i
-                    className="swiper-button prev-button"
+                    className={`swiper-button next next-button-${props.id}`}
                     aria-label="다음 상품리스트 버튼"
                 >
-                    <IoIosArrowBack size={30} />
+                    <IoIosArrowForward size={30} />
                 </i>
                 <Swiper {...swiperSetProperty} aria-label="slider">
                     {props.list &&
@@ -99,12 +100,12 @@ const SwiperContainer = styled.div`
         cursor: pointer;
     }
 
-    .next-button {
+    .next {
         right: 0;
         transform: translate(30px, -50%);
     }
 
-    .prev-button {
+    .prev {
         transform: translate(-30px, -50%);
     }
 
