@@ -37,7 +37,7 @@ describe("<recommendedItem />", () => {
     };
 
     test("렌더링", () => {
-        const mock = mockData.data[0];
+        const mock = mockData.result[0].list[0];
         const el = renderComponent(mock);
 
         expect(el.thumnail).toBeInTheDocument();
@@ -52,7 +52,7 @@ describe("<recommendedItem />", () => {
     });
 
     test("페이지 이동", () => {
-        const mock = mockData.data[0];
+        const mock = mockData.result[0].list[0];
         const { thumnail } = renderComponent(mock);
 
         fireEvent.click(thumnail);

@@ -1,6 +1,6 @@
 import { Carousel, CarouselType } from "./Carousel";
 import { render as Render } from "@testing-library/react";
-import { images } from "../../__mocks__/carousel";
+import { result } from "../../__mocks__/data/carousel.json";
 
 describe("Home Page", () => {
     const renderComponent = (props: CarouselType) => {
@@ -17,7 +17,7 @@ describe("Home Page", () => {
     });
 
     test("이미지o 렌더링", () => {
-        const { slider } = renderComponent({ list: images });
+        const { slider } = renderComponent({ list: result });
         expect(slider).toBeInTheDocument();
     });
 });
