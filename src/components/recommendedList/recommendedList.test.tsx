@@ -1,39 +1,73 @@
-import { render as renderTest } from "@testing-library/react";
-import { RecommendedList, RecommendedListType } from "./RecommendedList";
+import { act } from "react-dom/test-utils";
+import { render } from "@testing-library/react";
+import { RecommendedList } from "./RecommendedList";
+import { intersect, getObserverOf } from "../../__mocks__/interection-oserver";
 import mockData from "../../__mocks__/data/recommenedList.json";
 
 describe("<RecommendedList />", () => {
-    const renderComponent = (props: RecommendedListType) => {
-        const render = renderTest(<RecommendedList {...props} />);
+    test("observer 생성", () => {
+        const { container } = render(
+            <RecommendedList {...mockData.result[0]} />
+        );
+        const target = container.firstChild as HTMLElement;
 
-        const listSlider = render.queryByLabelText("slider");
-        const title = render.queryByLabelText("추천 리스트 제목");
-        const description = render.queryByLabelText("추천 리스트 상품 설명");
-
-        return {
-            render,
-            title,
-            listSlider,
-            description,
-        };
-    };
-
-    test("provided props 렌더링", () => {
-        const { title, listSlider, description } = renderComponent({
-            ...mockData.result[0],
+        act(() => {
+            intersect(target, false);
         });
 
-        expect(title).toBeInTheDocument();
-        expect(listSlider).toBeInTheDocument();
-        expect(description).toBeInTheDocument();
+        const instance = getObserverOf(target);
+
+        expect(instance.observe).toHaveBeenCalledWith(target);
     });
 
-    test("optional props 렌더링", () => {
-        const { title, description } = renderComponent({
-            list: mockData.result[0].list,
+    test("view port 들어 올경우 observer 해제", () => {
+        const { container } = render(
+            <RecommendedList {...mockData.result[0]} />
+        );
+        const target = container.firstChild as HTMLElement;
+
+        expect(getObserverOf(target).observe).toHaveBeenCalledWith(target);
+
+        act(() => {
+            intersect(target, true);
         });
 
-        expect(title).not.toBeInTheDocument();
-        expect(description).not.toBeInTheDocument();
+        expect(getObserverOf(target)).toEqual(undefined);
+    });
+
+    test("컴포넌트 unmount시 observer 해제", () => {
+        const { container, unmount } = render(
+            <RecommendedList {...mockData.result[0]} />
+        );
+
+        unmount();
+
+        expect(getObserverOf(container.firstChild as HTMLElement)).toEqual(
+            undefined
+        );
+    });
+
+    test("컴포넌트가 view port안에 없을 경우", () => {
+        const { container, queryByLabelText } = render(
+            <RecommendedList {...mockData.result[0]} />
+        );
+
+        act(() => {
+            intersect(container.firstChild as HTMLElement, false);
+        });
+
+        expect(queryByLabelText("로딩상태 화면")).toBeInTheDocument();
+    });
+
+    test("컴포넌트가 view port안에 있을 경우", () => {
+        const { container, queryByLabelText } = render(
+            <RecommendedList {...mockData.result[0]} />
+        );
+
+        act(() => {
+            intersect(container.firstChild as HTMLElement, true);
+        });
+
+        expect(queryByLabelText("로딩상태 화면")).not.toBeInTheDocument();
     });
 });

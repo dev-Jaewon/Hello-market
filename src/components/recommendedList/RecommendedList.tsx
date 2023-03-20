@@ -11,15 +11,19 @@ import {
     RecommendedItem,
     RecommendedItemType,
 } from "../recommendedItem/recommendedItem";
+import { useLazy } from "../../hooks/useLazy";
+import { Skeleton } from "../common/Skeleton/Skeleton";
 
 export type RecommendedListType = {
-    id: string | number;
+    id: string;
     title?: string;
     description?: string;
     list: Array<RecommendedItemType>;
 };
 
 export const RecommendedList = (props: RecommendedListType) => {
+    const { ref, inViewPort } = useLazy();
+
     const swiperSetProperty: SwiperProps = {
         modules: [FreeMode, Navigation],
         spaceBetween: 17,
@@ -30,42 +34,59 @@ export const RecommendedList = (props: RecommendedListType) => {
             prevEl: `.prev-button-${props.id}`,
         },
     };
+
+    const LoadingComponent = () => {
+        return (
+            <div aria-label="로딩상태 화면">
+                <Skeleton height="50" width="1050" margin="10px 0" />
+                <Skeleton height="50" width="1050" margin="10px 0" />
+                <Skeleton height="450" width="1050" />
+            </div>
+        );
+    };
+
     return (
-        <Container>
-            {props.title && (
-                <RecommenedListTitle aria-label="추천 리스트 제목">
-                    {props.title}
-                </RecommenedListTitle>
-            )}
+        <Container ref={ref}>
+            {inViewPort ? (
+                <>
+                    {props.title && (
+                        <RecommenedListTitle aria-label="추천 리스트 제목">
+                            {props.title}
+                        </RecommenedListTitle>
+                    )}
 
-            {props.description && (
-                <RecommenedListDescription aria-label="추천 리스트 상품 설명">
-                    {props.description}
-                </RecommenedListDescription>
-            )}
+                    {props.description && (
+                        <RecommenedListDescription aria-label="추천 리스트 상품 설명">
+                            {props.description}
+                        </RecommenedListDescription>
+                    )}
 
-            <SwiperContainer>
-                <i
-                    className={`swiper-button prev prev-button-${props.id}`}
-                    aria-label="이전 상품리스트 버튼"
-                >
-                    <IoIosArrowBack size={30} />
-                </i>
-                <i
-                    className={`swiper-button next next-button-${props.id}`}
-                    aria-label="다음 상품리스트 버튼"
-                >
-                    <IoIosArrowForward size={30} />
-                </i>
-                <Swiper {...swiperSetProperty} aria-label="slider">
-                    {props.list &&
-                        props.list.map((item) => (
-                            <SwiperSlide key={item.id}>
-                                <RecommendedItem {...item} />
-                            </SwiperSlide>
-                        ))}
-                </Swiper>
-            </SwiperContainer>
+                    <SwiperContainer>
+                        <i
+                            className={`swiper-button prev prev-button-${props.id}`}
+                            aria-label="이전 상품리스트 버튼"
+                        >
+                            <IoIosArrowBack size={30} />
+                        </i>
+                        <i
+                            className={`swiper-button next next-button-${props.id}`}
+                            aria-label="다음 상품리스트 버튼"
+                        >
+                            <IoIosArrowForward size={30} />
+                        </i>
+                        <Swiper {...swiperSetProperty} aria-label="slider">
+                            {props.list &&
+                                props.list.map((item) => (
+                                    <SwiperSlide key={item.id}>
+                                        <RecommendedItem {...item} />
+                                    </SwiperSlide>
+                                ))}
+                        </Swiper>
+                    </SwiperContainer>
+                </>
+            ) : (
+                <LoadingComponent />
+            )}
         </Container>
     );
 };
