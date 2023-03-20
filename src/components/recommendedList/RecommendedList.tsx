@@ -22,7 +22,7 @@ export type RecommendedListType = {
 };
 
 export const RecommendedList = (props: RecommendedListType) => {
-    const { ref, inViewPort } = useLazy();
+    const { ref, inViewPort } = useLazy(0.3);
 
     const swiperSetProperty: SwiperProps = {
         modules: [FreeMode, Navigation],
@@ -33,16 +33,6 @@ export const RecommendedList = (props: RecommendedListType) => {
             nextEl: `.next-button-${props.id}`,
             prevEl: `.prev-button-${props.id}`,
         },
-    };
-
-    const LoadingComponent = () => {
-        return (
-            <div aria-label="로딩상태 화면">
-                <Skeleton height="50" width="1050" margin="10px 0" />
-                <Skeleton height="50" width="1050" margin="10px 0" />
-                <Skeleton height="450" width="1050" />
-            </div>
-        );
     };
 
     return (
@@ -85,9 +75,19 @@ export const RecommendedList = (props: RecommendedListType) => {
                     </SwiperContainer>
                 </>
             ) : (
-                <LoadingComponent />
+                <SkeletonRecommendedList />
             )}
         </Container>
+    );
+};
+
+export const SkeletonRecommendedList = () => {
+    return (
+        <div aria-label="로딩상태 화면">
+            <Skeleton height="50" width="1050" margin="10px 0" />
+            <Skeleton height="50" width="1050" margin="10px 0" />
+            <Skeleton height="450" width="1050" />
+        </div>
     );
 };
 
