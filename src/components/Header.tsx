@@ -113,6 +113,8 @@ const MenuContainerShadow = styled.div`
     width: 100%;
     box-shadow: rgb(0 0 0 / 7%) 0px 3px 4px 0px;
     transition: 1s;
+    z-index: 100;
+    background-color: white;
 
     & > div {
         display: flex;
