@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { MouseEvent, ReactNode } from "react";
 
 export type ModalPropsType = {
-    handleModalOpen: (e: MouseEvent<HTMLElement>) => void;
+    handleModalOpen?: (e: MouseEvent<HTMLElement>) => void;
     children: ReactNode;
 };
 
@@ -26,4 +26,5 @@ const ModalContainer = styled.section`
     right: 0;
     left: 0;
     background: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
 `;

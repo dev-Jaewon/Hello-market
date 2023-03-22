@@ -19,8 +19,9 @@ export const Input = (props: InputProps) => {
     };
 
     return (
-        <Container onClick={handleClick} id={props.id}>
+        <Container onClick={handleClick}>
             <input
+                id={props.id}
                 type={props.type}
                 value={props.value}
                 onChange={props.onChange}
