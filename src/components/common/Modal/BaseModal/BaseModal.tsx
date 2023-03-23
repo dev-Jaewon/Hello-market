@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { MouseEvent, ReactNode } from "react";
+import { MouseEvent, ReactNode, useEffect } from "react";
 
 export type ModalPropsType = {
     handleModalOpen?: (e: MouseEvent<HTMLElement>) => void;
@@ -7,6 +7,13 @@ export type ModalPropsType = {
 };
 
 export const BaseModal = (props: ModalPropsType) => {
+    useEffect(() => {
+        document.body.style.overflow = "hidden";
+        return () => {
+            document.body.style.overflow = "unset";
+        };
+    }, []);
+
     return (
         <ModalContainer onClick={props.handleModalOpen} role="region">
             {props.children}
