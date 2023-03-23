@@ -1,0 +1,16 @@
+{
+    "result": {
+        "id": "1",
+        "name": "[맛있쥬~] 마카롱1",
+        "price": 9000,
+        "describe": "쫀득쫀득 맛있는 마카롱",
+        "thumnailImgUrl": "https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg",
+        "disCountRate": 10,
+        "beforeDiscountPrice": 10000,
+        "packagingType": "종이포장",
+        "weight": "1kg내외",
+        "countryOfOrigin": "한국",
+        "each": "1봉",
+        "seller": "헬로우"
+    }
+}
