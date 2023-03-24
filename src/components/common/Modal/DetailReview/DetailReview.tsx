@@ -1,12 +1,19 @@
 import styled from "@emotion/styled";
+import { MouseEvent, useMemo } from "react";
 import { GrClose } from "react-icons/gr";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setOpenModal } from "../../../../store/reducer/modal";
+import { productState } from "../../../../store/reducer/product";
 import { Button } from "../../Button/Button";
 import { BaseModal } from "../BaseModal/BaseModal";
 
-export const DetailRew = () => {
+export const DetailReview = () => {
     const dispatch = useDispatch();
+    const { reviews } = useSelector(productState);
+
+    const reviewData = useMemo(() => {
+        return reviews.list.find((review) => review.id === reviews.currentId);
+    }, [reviews.currentId]);
 
     const handleCloseClick = () => {
         dispatch(setOpenModal(null));
@@ -16,22 +23,31 @@ export const DetailRew = () => {
         dispatch(setOpenModal("images"));
     };
 
+    const handleMoalOpen = (e: MouseEvent<HTMLElement>) => {
+        if (e.currentTarget === e.target) dispatch(setOpenModal(null));
+    };
+
     return (
-        <BaseModal>
+        <BaseModal handleModalOpen={handleMoalOpen}>
             <Container>
-                <Header>
+                <MoodalHead>
                     <h1>사진 후기</h1>
                     <i onClick={handleCloseClick} aria-label="닫힘버튼">
                         <GrClose size={24} />
                     </i>
-                </Header>
+                </MoodalHead>
                 <Content>
-                    <img src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg" />
+                    <img
+                        src={reviewData?.imageUrl}
+                        alt={`${reviewData?.name} 이미지`}
+                    />
                     <ReviewInfo>
-                        <p className="author">장**</p>
-                        <p className="productName">가나다라 상품</p>
-                        <div className="productContent">상품이 매우 좋아요</div>
-                        <p className="createDate">2023.03.28</p>
+                        <p className="author">{reviewData?.author}</p>
+                        <p className="productName">{reviewData?.name}</p>
+                        <div className="productContent">
+                            {reviewData?.content}
+                        </div>
+                        <p className="createDate">{reviewData?.createDate}</p>
                     </ReviewInfo>
                 </Content>
                 <div className="buttonContainer">
@@ -41,7 +57,7 @@ export const DetailRew = () => {
                         height={55}
                         onClick={handleMoveImagesClick}
                     >
-                        사진 목록 보기
+                        사진목록 보기
                     </Button>
                 </div>
             </Container>
@@ -65,7 +81,7 @@ const Container = styled.div`
     }
 `;
 
-const Header = styled.head`
+const MoodalHead = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -1,240 +1,53 @@
 import { BaseModal } from "../BaseModal/BaseModal";
 import styled from "@emotion/styled";
 import { GrClose } from "react-icons/gr";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setOpenModal } from "../../../../store/reducer/modal";
+import {
+    productState,
+    setCurrentReviewId,
+} from "../../../../store/reducer/product";
+import { MouseEvent } from "react";
 
 export const ImagesModal = () => {
     const dispatch = useDispatch();
+    const { reviews } = useSelector(productState);
 
     const handleCloseClick = () => {
         dispatch(setOpenModal(null));
     };
 
-    const handleReviewClick = () => {
+    const handleReviewClick = (id: string) => {
+        dispatch(setCurrentReviewId(id));
         dispatch(setOpenModal("review"));
     };
 
+    const handleMoalOpen = (e: MouseEvent<HTMLElement>) => {
+        if (e.currentTarget === e.target) dispatch(setOpenModal(null));
+    };
+
     return (
-        <BaseModal>
+        <BaseModal handleModalOpen={handleMoalOpen}>
             <Container>
-                <Header>
+                <MoodalHead>
                     <h1>사진 후기 전체보기</h1>
                     <i onClick={handleCloseClick} aria-label="닫힘버튼">
                         <GrClose size={24} />
                     </i>
-                </Header>
+                </MoodalHead>
                 <Content>
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
-                    <img
-                        onClick={handleReviewClick}
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt=""
-                    />
+                    {reviews.list.length ? (
+                        reviews.list.map((review) => (
+                            <img
+                                onClick={() => handleReviewClick(review.id)}
+                                src={review.imageUrl}
+                                alt={review.name + "이미지"}
+                                key={review.id}
+                            />
+                        ))
+                    ) : (
+                        <div>데이터 없음</div>
+                    )}
                 </Content>
             </Container>
         </BaseModal>
@@ -246,10 +59,9 @@ const Container = styled.div`
     border-radius: 15px;
     padding: 30px;
     width: 800px;
-    height: 700px;
 `;
 
-const Header = styled.head`
+const MoodalHead = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -267,7 +79,8 @@ const Header = styled.head`
 
 const Content = styled.div`
     display: grid;
-    height: 590px;
+    height: 100%;
+    max-height: 590px;
     padding-top: 30px;
     grid-template-columns: repeat(6, 120px);
     gap: 3px;
