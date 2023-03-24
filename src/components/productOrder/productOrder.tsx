@@ -9,7 +9,7 @@ export type ProductOrderType = {
     id: string;
     name: string;
     price: number;
-    describe: string;
+    description: string;
     thumnailImgUrl: string;
     disCountRate: number;
     beforeDiscountPrice: number;
@@ -25,6 +25,11 @@ export const ProductOrder = (props: ProductOrderType) => {
 
     return (
         <Container>
+            {process.env.NODE_ENV === "development" && (
+                <DevelopMode>
+                    개발모드로 선택한 데이터와 다를 수 있습니다.
+                </DevelopMode>
+            )}
             <Thumbnail
                 src={props.thumnailImgUrl}
                 alt={`${props.name} 이미지`}
@@ -32,7 +37,7 @@ export const ProductOrder = (props: ProductOrderType) => {
             <InfoContainer>
                 <ProductName aria-label="상품이름">{props.name}</ProductName>
                 <ProductDescribe aria-label="상품설명">
-                    {props.describe}
+                    {props.description}
                 </ProductDescribe>
                 <PriceContainer>
                     <ProductDisCountRate aria-label="할인율">
@@ -140,6 +145,7 @@ export const ProductOrder = (props: ProductOrderType) => {
 };
 
 const Container = styled.section`
+    position: relative;
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -309,4 +315,14 @@ const ProductAddChartContainer = styled.div`
     display: flex;
     margin-top: 30px;
     justify-content: end;
+`;
+
+const DevelopMode = styled.div`
+    position: absolute;
+    left: 25px;
+    top: 50px;
+    color: white;
+    padding: 30px;
+    border-radius: 50px;
+    background-color: rgba(0, 0, 0, 0.5);
 `;

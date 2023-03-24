@@ -1,12 +1,12 @@
 import { renderWithProviders } from "../../utils/test-utils";
 import { ProductOrder } from "./productOrder";
-import mockData from "../../__mocks__/data/product.json";
+import { product } from "../../__mocks__/data/product";
+
+const mockData = product("readomStringId");
 
 describe("<RecommendedList />", () => {
     const renderComponent = () => {
-        const render = renderWithProviders(
-            <ProductOrder {...mockData.result} />
-        );
+        const render = renderWithProviders(<ProductOrder {...mockData} />);
 
         const productName = render.getByLabelText("상품이름");
         const productEach = render.getByLabelText("판매단위");
@@ -18,9 +18,7 @@ describe("<RecommendedList />", () => {
         const productdisCountRate = render.getByLabelText("할인율");
         const productPackagingType = render.getByLabelText("포장타입");
         const productBeforeDiscountPrice = render.getByLabelText("할인전 가격");
-        const productThumbNail = render.getByAltText(
-            `${mockData.result.name} 이미지`
-        );
+        const productThumbNail = render.getByAltText(`${mockData.name} 이미지`);
 
         return {
             productName,

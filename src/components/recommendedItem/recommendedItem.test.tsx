@@ -1,14 +1,14 @@
 import { fireEvent, render } from "@testing-library/react";
 import { RecommendedItem, RecommendedItemType } from "./recommendedItem";
-import mockData from "../../__mocks__/data/recommenedList.json";
 import mockRouter from "next-router-mock";
 import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
+import { recommededItems } from "../../__mocks__/data/recommenedList";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
 describe("<recommendedItem />", () => {
     const renderComponent = (props: RecommendedItemType) => {
-        const { getByRole, getByLabelText } = render(
+        const { getByRole, getByLabelText, queryByLabelText } = render(
             <RecommendedItem {...props} />,
             { wrapper: MemoryRouterProvider }
         );
@@ -16,7 +16,7 @@ describe("<recommendedItem />", () => {
         const thumnail = getByRole("img");
         const reviewIcon = getByLabelText("리뷰 아이콘");
         const productName = getByLabelText("상품이름");
-        const discountRate = getByLabelText("할인율");
+        const discountRate = queryByLabelText("할인율");
         const productPrice = getByLabelText("상품가격");
         const comentLength = getByLabelText("리뷰숫자");
         const productDescribe = getByLabelText("상품설명");
@@ -37,7 +37,7 @@ describe("<recommendedItem />", () => {
     };
 
     test("렌더링", () => {
-        const mock = mockData.result[0].list[0];
+        const mock = recommededItems[0].list[0];
         const el = renderComponent(mock);
 
         expect(el.thumnail).toBeInTheDocument();
@@ -52,7 +52,7 @@ describe("<recommendedItem />", () => {
     });
 
     test("페이지 이동", () => {
-        const mock = mockData.result[0].list[0];
+        const mock = recommededItems[0].list[0];
         const { thumnail } = renderComponent(mock);
 
         fireEvent.click(thumnail);

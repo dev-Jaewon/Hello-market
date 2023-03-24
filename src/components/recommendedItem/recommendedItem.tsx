@@ -9,7 +9,7 @@ export type RecommendedItemType = {
     name: string;
     price: number;
     imgUrl: string;
-    describe: string;
+    description: string;
     disCountRate: number;
     comentLength: number;
     beforeDiscountPrice: number;
@@ -24,10 +24,10 @@ export const RecommendedItem = (props: RecommendedItemType) => {
                     <BsCart2 size="23px" />
                 </CartIcon>
             </ImageContainer>
-            <ProductName aria-label="상품이름">{props.name}</ProductName>
             <ProductDescribe aria-label="상품설명">
-                {props.describe}
+                {props.description}
             </ProductDescribe>
+            <ProductName aria-label="상품이름">{props.name}</ProductName>
             <PriceInfoContainer>
                 {props.disCountRate && (
                     <DisCountRate aria-label="할인율">
@@ -55,7 +55,7 @@ export const RecommendedItem = (props: RecommendedItemType) => {
 const Container = styled(Link)`
     display: flex;
     flex-direction: column;
-    width: fit-content;
+    width: inherit;
     cursor: pointer;
 
     &:hover {
@@ -111,6 +111,10 @@ const ProductDescribe = styled.p`
     margin-bottom: 4px;
     color: rgb(153, 153, 153);
     font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 `;
 
 const PriceInfoContainer = styled.div`
