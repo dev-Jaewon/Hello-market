@@ -100,7 +100,7 @@ const BusinessInfo = styled.div`
         p {
             display: flex;
 
-            &:not(:first-child) {
+            &:not(:first-of-type) {
                 position: relative;
                 margin-left: 5px;
 
