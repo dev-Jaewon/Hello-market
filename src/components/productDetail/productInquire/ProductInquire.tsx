@@ -1,10 +1,12 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Button } from "../../common/Button/Button";
+import { Fragment, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
+import { productState, setInquirePage } from "../../../store/reducer/product";
 
 import { RiQuestionnaireFill, RiQuestionAnswerFill } from "react-icons/ri";
 import { setOpenModal } from "../../../store/reducer/modal";
+import { Button } from "../../common/Button/Button";
 
 export type InquireType = {
     id: string;
@@ -16,13 +18,19 @@ export type InquireType = {
     answerContent: string;
 };
 
-export type ProductInquirePropsType = {
-    list?: Array<InquireType>;
-};
-
-export const ProductInquire = ({ list }: ProductInquirePropsType) => {
+export const ProductInquire = () => {
     const dispatch = useDispatch();
+    const { inquire } = useSelector(productState);
+
     const [openQuest, setOpenQuest] = useState<string>("");
+
+    const inquirePageNation = useMemo(() => {
+        return inquire.list.length
+            ? new Array(Math.ceil(inquire.list.length / 10))
+                  .fill(0)
+                  .map((_, i) => inquire.list.slice(i * 10, (i + 1) * 10))
+            : [];
+    }, [inquire.list]);
 
     const handleInquireClick = (id: string) => {
         if (id === openQuest) {
@@ -34,6 +42,10 @@ export const ProductInquire = ({ list }: ProductInquirePropsType) => {
 
     const handleQuestWriteModal = () => {
         dispatch(setOpenModal("question"));
+    };
+
+    const setPage = (page: number) => {
+        dispatch(setInquirePage(page));
     };
 
     return (
@@ -69,82 +81,70 @@ export const ProductInquire = ({ list }: ProductInquirePropsType) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {list && list?.length > 0 ? (
-                        [
-                            {
-                                id: "1",
-                                title: "언제오나요?",
-                                author: "testID",
-                                createData: "2022.12.12",
-                                answered: false,
-                                InquireContent:
-                                    "이미 결제했으면 물건은 확보상태로 해주셔야하는거 아닌가요??",
-                                answerContent:
-                                    "바쁘신 와중에 오늘도 컬리를 찾아주셔서 먼저 감사 인사드립니다.",
-                            },
-                            {
-                                id: "2",
-                                title: "언제오나요?",
-                                author: "testID",
-                                createData: "2022.12.12",
-                                answered: false,
-                                InquireContent:
-                                    "이미 결제했으면 물건은 확보상태로 해주셔야하는거 아닌가요??",
-                                answerContent:
-                                    "바쁘신 와중에 오늘도 컬리를 찾아주셔서 먼저 감사 인사드립니다.",
-                            },
-                        ].map((content) => {
-                            return (
-                                <>
-                                    <tr
-                                        onClick={() =>
-                                            handleInquireClick(content.id)
-                                        }
-                                    >
-                                        <td>{content.title}</td>
-                                        <td>{content.author}</td>
-                                        <td>{content.createData}</td>
-                                        <td>
-                                            {content.answered
-                                                ? "답변완료"
-                                                : "미답변"}
-                                        </td>
-                                    </tr>
-                                    {openQuest === content.id && (
-                                        <InQuireContainer>
-                                            <td colSpan={4}>
-                                                <div>
-                                                    <i>
-                                                        <RiQuestionnaireFill
-                                                            size={24}
-                                                            color={
-                                                                "rgb(160, 66, 153)"
-                                                            }
-                                                        />
-                                                    </i>
-                                                    <div>
-                                                        {content.InquireContent}
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <i>
-                                                        <RiQuestionAnswerFill
-                                                            size={24}
-                                                            color={
-                                                                "var(--brand)"
-                                                            }
-                                                        />
-                                                    </i>
-                                                    <div>
-                                                        {content.answerContent}
-                                                    </div>
-                                                </div>
+                    {inquirePageNation && inquirePageNation.length ? (
+                        inquirePageNation[inquire.currentPage].map(
+                            (content: any) => {
+                                return (
+                                    <Fragment key={content.id}>
+                                        <tr
+                                            onClick={() =>
+                                                handleInquireClick(content.id)
+                                            }
+                                        >
+                                            <td>{content.name}</td>
+                                            <td>{content.author}</td>
+                                            <td>{content.createDate}</td>
+                                            <td>
+                                                {content.answered ? (
+                                                    <Answered>
+                                                        답변완료
+                                                    </Answered>
+                                                ) : (
+                                                    "미답변"
+                                                )}
                                             </td>
-                                        </InQuireContainer>
-                                    )}
-                                </>
-                            );
-                        })
+                                        </tr>
+                                        {openQuest === content.id &&
+                                            content.answered && (
+                                                <InQuireContainer>
+                                                    <td colSpan={4}>
+                                                        <div>
+                                                            <i>
+                                                                <RiQuestionnaireFill
+                                                                    size={24}
+                                                                    color={
+                                                                        "rgb(160, 66, 153)"
+                                                                    }
+                                                                />
+                                                            </i>
+                                                            <div>
+                                                                {
+                                                                    content.content
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <i>
+                                                                <RiQuestionAnswerFill
+                                                                    size={24}
+                                                                    color={
+                                                                        "var(--brand)"
+                                                                    }
+                                                                />
+                                                            </i>
+                                                            <div>
+                                                                {
+                                                                    content.answerContent
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </InQuireContainer>
+                                            )}
+                                    </Fragment>
+                                );
+                            }
+                        )
                     ) : (
                         <tr>
                             <NotInquire colSpan={4}>
@@ -154,6 +154,22 @@ export const ProductInquire = ({ list }: ProductInquirePropsType) => {
                     )}
                 </tbody>
             </InquireTable>
+            <PageNationContainer>
+                <button
+                    disabled={inquire.currentPage === 0}
+                    onClick={() => setPage(inquire.currentPage - 1)}
+                >
+                    <SlArrowLeft size={20} />
+                </button>
+                <button
+                    disabled={
+                        inquire.currentPage === inquirePageNation.length - 1
+                    }
+                    onClick={() => setPage(inquire.currentPage + 1)}
+                >
+                    <SlArrowRight size={20} />
+                </button>
+            </PageNationContainer>
         </Container>
     );
 };
@@ -220,11 +236,11 @@ const InquireTable = styled.table`
         }
 
         td {
-            &:nth-child(1) {
+            &:nth-of-type(1) {
                 padding-left: 20px;
             }
 
-            &:not(:nth-child(1)) {
+            &:not(:nth-of-type(1)) {
                 text-align: center;
             }
         }
@@ -256,4 +272,30 @@ const InQuireContainer = styled.tr`
 const NotInquire = styled.td`
     text-align: center;
     padding: 20px;
+`;
+
+const Answered = styled.p`
+    color: var(--brand);
+`;
+
+const PageNationContainer = styled.div`
+    padding: 30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    button {
+        display: inline-block;
+        padding: 10px;
+        border: 1px solid black;
+        background-color: unset;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &:disabled {
+            border: 1px solid #999999;
+            cursor: auto;
+        }
+    }
 `;

@@ -1,18 +1,28 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
 import { GrClose } from "react-icons/gr";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setOpenModal } from "../../../../store/reducer/modal";
 import { Button } from "../../Button/Button";
 import { Input } from "../../Input/Input";
 import { BaseModal } from "../BaseModal/BaseModal";
+import { productState } from "../../../../store/reducer/product";
+import { writeInquire } from "../../../../store/actions/product";
+import { AppDispatch } from "../../../../store";
 
 export const QuestionModal = () => {
-    const dispatch = useDispatch();
-    const [title, setTitle] = useState("");
+    const dispatch = useDispatch<AppDispatch>();
+    const { product } = useSelector(productState);
+
+    const [name, setName] = useState("");
     const [content, setContent] = useState("");
 
     const handleCloseClick = () => {
+        dispatch(setOpenModal(null));
+    };
+
+    const handleSubmitClick = async () => {
+        await dispatch(writeInquire({ name, content }));
         dispatch(setOpenModal(null));
     };
 
@@ -27,10 +37,10 @@ export const QuestionModal = () => {
                 </ProductHead>
                 <ProductInfo>
                     <img
-                        src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/makaron.jpg"
-                        alt="상품 이미지"
+                        src={product.thumnailImgUrl}
+                        alt={`${product.name} 상품 이미지`}
                     />
-                    <p>상품 이름</p>
+                    <p>{product.name}</p>
                 </ProductInfo>
                 <ProductQuestionContent>
                     <div>
@@ -42,8 +52,8 @@ export const QuestionModal = () => {
                                 id="inquire-title"
                                 type="text"
                                 placeholder="제목을 입력해 주세요"
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
                             />
                         </div>
                     </div>
@@ -72,8 +82,9 @@ export const QuestionModal = () => {
                     <Button
                         width={160}
                         height={60}
-                        disabled={Boolean(!title || !content)}
-                        fillColor={Boolean(title && content)}
+                        disabled={Boolean(!name || !content)}
+                        fillColor={Boolean(name && content)}
+                        onClick={handleSubmitClick}
                     >
                         등록
                     </Button>
