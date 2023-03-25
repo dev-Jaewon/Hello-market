@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "..";
 
 export type ModalStateType = {
-    type: "question" | "notified" | null;
+    type: "question" | "notified" | "images" | "review" | null;
     content: string;
 };
 

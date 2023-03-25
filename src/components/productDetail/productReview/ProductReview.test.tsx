@@ -1,9 +1,9 @@
-import { render } from "@testing-library/react";
+import { renderWithProviders } from "../../../utils/test-utils";
 import { ProductReview } from "./ProductReview";
 
 describe("<ProductComent />", () => {
     const renderComponent = () => {
-        const obj = render(<ProductReview />);
+        const obj = renderWithProviders(<ProductReview />);
 
         const head = obj.getByText("상품후기");
 

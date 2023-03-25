@@ -1,12 +1,10 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import styled from "@emotion/styled";
 import { ProductDetailHeader } from "./productDetailHeader/productDetailHeader";
 import { ProductInquire } from "./productInquire/ProductInquire";
 import { ProductReview } from "./productReview/ProductReview";
 
 export const ProductDetail = () => {
-    const [reviewCount, setReviewCount] = useState<number>(0);
-
     const reviewRef = useRef<HTMLDivElement | null>(null);
     const inquiryRef = useRef<HTMLDivElement | null>(null);
     const infoRefRef = useRef<HTMLDivElement | null>(null);
@@ -16,7 +14,7 @@ export const ProductDetail = () => {
         <Container>
             <ProductDetailHeader
                 defaultTap={null}
-                reviewCount={reviewCount}
+                reviewCount={10}
                 reviewRef={reviewRef}
                 infoRefRef={infoRefRef}
                 inquiryRef={inquiryRef}
