@@ -1,47 +1,36 @@
-import { useRouter } from "next/router";
 import styled from "@emotion/styled";
-import axios from "axios";
-import { useEffect, useState } from "react";
-
+import { useRouter } from "next/router";
+import { AppDispatch } from "../../store";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
-    ProductOrder,
-    ProductOrderType,
-} from "../../components/productOrder/productOrder";
+    getInquires,
+    getProduct,
+    getReviews,
+} from "../../store/actions/product";
+import { productState } from "../../store/reducer/product";
+
+import { ProductOrder } from "../../components/productOrder/productOrder";
 import { ProductDetail } from "../../components/productDetail/ProductDetail";
 
 const ProductPage = () => {
+    const dispatch = useDispatch<AppDispatch>();
+
     const { id } = useRouter().query;
-    const [orderInfo, setOrderInfo] = useState<ProductOrderType | null>(null);
+    const { product } = useSelector(productState);
 
     useEffect(() => {
-        if (!id || orderInfo) return;
-
-        (async () => {
-            const urls = [`/product/${id}`];
-
-            const responses = await Promise.allSettled(
-                urls.map((url) => axios.get(url))
-            );
-
-            responses.forEach((res) => {
-                if (res.status === "fulfilled") {
-                    const { data, config } = res.value;
-
-                    if (config.url === `/product/${id}`) {
-                        setOrderInfo(data.result);
-                    }
-                } else {
-                    console.error(res.reason.message);
-                }
-            });
-        })();
+        if (!id || product.id) return;
+        dispatch(getReviews(id as string));
+        dispatch(getProduct(id as string));
+        dispatch(getInquires(id as string));
     }, [id]);
 
     return (
         <Container>
-            {orderInfo && (
+            {product.id && (
                 <Container>
-                    <ProductOrder {...orderInfo} />
+                    <ProductOrder {...product} />
                     <ProductDetail />
                 </Container>
             )}
