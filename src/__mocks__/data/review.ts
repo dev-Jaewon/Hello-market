@@ -19,6 +19,6 @@ export const review = (id: string) => {
                 createDate: new Date(createDate).toISOString().split("T")[0],
             };
         }),
-        next: Math.random() < 0.5 ? faker.datatype.uuid() : null,
+        next: Math.random() < 0.5 ? faker.datatype.uuid() : false,
     };
 };
