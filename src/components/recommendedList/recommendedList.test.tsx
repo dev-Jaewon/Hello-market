@@ -2,12 +2,12 @@ import { act } from "react-dom/test-utils";
 import { render } from "@testing-library/react";
 import { RecommendedList } from "./RecommendedList";
 import { intersect, getObserverOf } from "../../__mocks__/interection-oserver";
-import mockData from "../../__mocks__/data/recommenedList.json";
+import { recommededItems } from "../../__mocks__/data/recommenedList";
 
 describe("<RecommendedList />", () => {
     test("observer 생성", () => {
         const { container } = render(
-            <RecommendedList {...mockData.result[0]} />
+            <RecommendedList {...recommededItems[0]} />
         );
         const target = container.firstChild as HTMLElement;
 
@@ -22,7 +22,7 @@ describe("<RecommendedList />", () => {
 
     test("view port 들어 올경우 observer 해제", () => {
         const { container } = render(
-            <RecommendedList {...mockData.result[0]} />
+            <RecommendedList {...recommededItems[0]} />
         );
         const target = container.firstChild as HTMLElement;
 
@@ -37,7 +37,7 @@ describe("<RecommendedList />", () => {
 
     test("컴포넌트 unmount시 observer 해제", () => {
         const { container, unmount } = render(
-            <RecommendedList {...mockData.result[0]} />
+            <RecommendedList {...recommededItems[0]} />
         );
 
         unmount();
@@ -49,7 +49,7 @@ describe("<RecommendedList />", () => {
 
     test("컴포넌트가 view port안에 없을 경우", () => {
         const { container, queryByLabelText } = render(
-            <RecommendedList {...mockData.result[0]} />
+            <RecommendedList {...recommededItems[0]} />
         );
 
         act(() => {
@@ -61,7 +61,7 @@ describe("<RecommendedList />", () => {
 
     test("컴포넌트가 view port안에 있을 경우", () => {
         const { container, queryByLabelText } = render(
-            <RecommendedList {...mockData.result[0]} />
+            <RecommendedList {...recommededItems[0]} />
         );
 
         act(() => {

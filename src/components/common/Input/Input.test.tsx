@@ -45,9 +45,9 @@ describe("<Input /> component", () => {
         expect(input).toHaveProperty("value", "inputValue");
         expect(input).toHaveProperty("type", "text");
         expect(input).toHaveProperty("placeholder", "테스트");
+        expect(input).toHaveProperty("id", "input-id");
 
         const container = renderInputComponent.container.firstChild;
-        expect(container).toHaveProperty("id", "input-id");
         expect(container).toHaveStyle("border: 1px solid rgb(221, 221, 221);");
     });
 
@@ -91,17 +91,14 @@ describe("<Input /> component", () => {
             })
         );
 
-        const input =
-            renderInputComponent.container.querySelector(
-                "#input-id"
-            )?.firstChild;
+        const input = renderInputComponent.container.querySelector("#input-id");
         expect(input).toBeInTheDocument();
         expect(input).toHaveProperty("value", "inputValue");
         expect(input).toHaveProperty("type", "password");
         expect(input).toHaveProperty("placeholder", "테스트");
+        expect(input).toHaveProperty("id", "input-id");
 
         const container = renderInputComponent.container.firstChild;
-        expect(container).toHaveProperty("id", "input-id");
         expect(container).toHaveStyle("border: 1px solid rgb(221, 221, 221);");
     });
 
@@ -115,7 +112,7 @@ describe("<Input /> component", () => {
 
         const inputPassword = renderInputComponent.container.querySelector(
             "#input-id"
-        )?.firstChild as HTMLInputElement;
+        ) as HTMLInputElement;
 
         fireEvent.change(inputPassword, { target: { value: "테스트 인풋" } });
 

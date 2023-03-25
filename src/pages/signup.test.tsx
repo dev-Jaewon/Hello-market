@@ -12,18 +12,24 @@ const renderSignup = () => {
     const render = renderWithProviders(<Signup />);
 
     // input
-    const InputId = render.container.querySelector("#input-id")
-        ?.children[0] as HTMLInputElement;
-    const InputPassword = render.container.querySelector("#input-pwd")
-        ?.children[0] as HTMLInputElement;
-    const InputPasswordRe = render.container.querySelector("#input-pwd-re")
-        ?.children[0] as HTMLInputElement;
-    const InputName = render.container.querySelector("#input-name")
-        ?.children[0] as HTMLInputElement;
-    const InputEmail = render.container.querySelector("#input-email")
-        ?.children[0] as HTMLInputElement;
-    const InputPhone = render.container.querySelector("#input-phone")
-        ?.children[0] as HTMLInputElement;
+    const InputId = render.container.querySelector(
+        "#input-id"
+    ) as HTMLInputElement;
+    const InputPassword = render.container.querySelector(
+        "#input-pwd"
+    ) as HTMLInputElement;
+    const InputPasswordRe = render.container.querySelector(
+        "#input-pwd-re"
+    ) as HTMLInputElement;
+    const InputName = render.container.querySelector(
+        "#input-name"
+    ) as HTMLInputElement;
+    const InputEmail = render.container.querySelector(
+        "#input-email"
+    ) as HTMLInputElement;
+    const InputPhone = render.container.querySelector(
+        "#input-phone"
+    ) as HTMLInputElement;
 
     const SignupButton = render.getByText("가입하기");
     const IdDuplicateCheckButton = render.getByText("ID중복확인");

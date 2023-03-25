@@ -32,6 +32,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/jest", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:11.10.5"],\
             ["@emotion/react", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:11.10.6"],\
             ["@emotion/styled", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:11.10.6"],\
+            ["@faker-js/faker", "npm:7.6.0"],\
             ["@reduxjs/toolkit", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:1.9.3"],\
             ["@testing-library/jest-dom", "npm:5.16.5"],\
             ["@testing-library/react", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:14.0.0"],\
@@ -1366,6 +1367,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/unplugged/@esbuild-win32-x64-npm-0.16.17-25af261435/node_modules/@esbuild/win32-x64/",\
           "packageDependencies": [\
             ["@esbuild/win32-x64", "npm:0.16.17"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@faker-js/faker", [\
+        ["npm:7.6.0", {\
+          "packageLocation": "./.yarn/cache/@faker-js-faker-npm-7.6.0-fa135883e9-942af62217.zip/node_modules/@faker-js/faker/",\
+          "packageDependencies": [\
+            ["@faker-js/faker", "npm:7.6.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -4235,6 +4245,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/jest", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:11.10.5"],\
             ["@emotion/react", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:11.10.6"],\
             ["@emotion/styled", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:11.10.6"],\
+            ["@faker-js/faker", "npm:7.6.0"],\
             ["@reduxjs/toolkit", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:1.9.3"],\
             ["@testing-library/jest-dom", "npm:5.16.5"],\
             ["@testing-library/react", "virtual:23ca0e6ed57dc1bb3f60c08264446f29d3b140df23a620ad4254b3eb8366ad61dacd93e857cd2a3fd2f62dfebe2bc474d7dc76befd8004679ea8b04ff50293df#npm:14.0.0"],\
