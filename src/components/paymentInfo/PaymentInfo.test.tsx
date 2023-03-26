@@ -8,7 +8,7 @@ describe("<PaymentInfo />", () => {
         const ins = renderWithProviders(<PaymentInfo />, {
             preloadedState: {
                 cartState: {
-                    list: [cartMock],
+                    list: [cartMock()],
                 },
             },
         });
@@ -26,7 +26,7 @@ describe("<PaymentInfo />", () => {
 
         const price = store.getState().cartState.list.reduce((sum, cur) => {
             if (cur.checked) {
-                sum = sum + cur.beforeDiscountPrice;
+                sum = sum + cur.beforeDiscountPrice * cur.quantity;
             }
             return sum;
         }, 0);
@@ -39,7 +39,8 @@ describe("<PaymentInfo />", () => {
 
         const price = store.getState().cartState.list.reduce((sum, cur) => {
             if (cur.checked) {
-                sum = sum + (cur.beforeDiscountPrice - cur.price);
+                sum =
+                    sum + (cur.beforeDiscountPrice - cur.price) * cur.quantity;
             }
             return sum;
         }, 0);
@@ -52,7 +53,7 @@ describe("<PaymentInfo />", () => {
 
         const price = store.getState().cartState.list.reduce((sum, cur) => {
             if (cur.checked) {
-                sum = sum + cur.price;
+                sum = sum + cur.price * cur.quantity;
             }
             return sum;
         }, 0);

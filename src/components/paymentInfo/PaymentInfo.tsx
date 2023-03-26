@@ -10,17 +10,20 @@ export const PaymentInfo = () => {
     const prices = useMemo(() => {
         return list.length
             ? list.reduce(
-                  (price, cur) => {
-                      if (cur.checked) {
-                          price["productPrice"] =
-                              price["productPrice"] + cur.beforeDiscountPrice;
-                          price["salePrice"] =
-                              price["salePrice"] +
-                              (cur.beforeDiscountPrice - cur.price);
-                          price["paymentAmount"] =
-                              price["paymentAmount"] + cur.price;
-                      }
-                      return price;
+                  (
+                      prices,
+                      { quantity, beforeDiscountPrice, price, checked }
+                  ) => {
+                      if (!checked) return prices;
+
+                      prices["paymentAmount"] += price * quantity;
+
+                      prices["productPrice"] += beforeDiscountPrice * quantity;
+
+                      prices["salePrice"] +=
+                          (beforeDiscountPrice - price) * quantity;
+
+                      return prices;
                   },
                   { productPrice: 0, salePrice: 0, paymentAmount: 0 }
               )
