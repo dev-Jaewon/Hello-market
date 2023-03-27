@@ -46,4 +46,9 @@ export const handlers = [
     rest.get("/cart", async (req, res, ctx) => {
         return res(ctx.status(200), ctx.json({ result: getCartMock() }));
     }),
+
+    rest.delete("/cart/:id", async (req, res, ctx) => {
+        const id = req.params.id;
+        return res(ctx.status(200));
+    }),
 ];

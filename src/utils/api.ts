@@ -54,3 +54,13 @@ export const getCart = async () => {
         throw error;
     }
 };
+
+export type resDeleteCartItem = { result: boolean; id: string };
+export const deleteCartItem = async (id: string) => {
+    try {
+        await axios.delete<resDeleteCartItem>(`/cart/${id}`);
+        return id;
+    } catch (error) {
+        throw error;
+    }
+};

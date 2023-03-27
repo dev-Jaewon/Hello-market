@@ -63,3 +63,10 @@ export const CATEGORY_LIST = [
         value: "과일·견과·쌀",
     },
 ];
+
+export const ORDER_NOTIFIE_CATION = [
+    "본 사이트는 포트폴리오로 작성된 사이트입니다.",
+    "본 사이트에서는 쿠폰기능이 없습니다.",
+    "[주문완료] 상태일 경우에만 주문 취소가 가능합니다",
+    "테스트를 위한 사이트입니다",
+];
