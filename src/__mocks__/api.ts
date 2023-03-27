@@ -5,6 +5,7 @@ const { recommededItems } = require("./data/recommenedList");
 const { product } = require("./data/product");
 const { review } = require("./data/review");
 const { getInquire, postInquire } = require("./data/inquire");
+const { getCartMock } = require("./data/cart");
 
 export const handlers = [
     rest.get("/carousel", (req, res, ctx) => {
@@ -40,5 +41,14 @@ export const handlers = [
     rest.post("/inquire", async (req, res, ctx) => {
         const data = await req.json();
         return res(ctx.status(200), ctx.json({ result: postInquire(data) }));
+    }),
+
+    rest.get("/cart", async (req, res, ctx) => {
+        return res(ctx.status(200), ctx.json({ result: getCartMock() }));
+    }),
+
+    rest.delete("/cart/:id", async (req, res, ctx) => {
+        const id = req.params.id;
+        return res(ctx.status(200));
     }),
 ];

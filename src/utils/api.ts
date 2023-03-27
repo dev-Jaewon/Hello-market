@@ -1,4 +1,5 @@
 import axios from "axios";
+import { CartStateType } from "../store/reducer/cart";
 import { Inquire, Product } from "../store/reducer/product";
 
 // axios.defaults.baseURL = process.env.
@@ -39,6 +40,26 @@ export const postWriteInquire = async (data: ReqPostWriteInquire) => {
     try {
         const res = await axios.post<resPostInquire>(`/inquire`, data);
         return res.data.result;
+    } catch (error) {
+        throw error;
+    }
+};
+
+export type resGetCart = { result: CartStateType };
+export const getCart = async () => {
+    try {
+        const res = await axios.get<resGetCart>("/cart");
+        return res.data.result;
+    } catch (error) {
+        throw error;
+    }
+};
+
+export type resDeleteCartItem = { result: boolean; id: string };
+export const deleteCartItem = async (id: string) => {
+    try {
+        await axios.delete<resDeleteCartItem>(`/cart/${id}`);
+        return id;
     } catch (error) {
         throw error;
     }
