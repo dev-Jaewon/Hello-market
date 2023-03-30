@@ -1,16 +1,18 @@
 import styled from "@emotion/styled";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CartList } from "../components/cartList/CartList";
 import { PaymentInfo } from "../components/paymentInfo/PaymentInfo";
 import { AppDispatch } from "../store";
 import { getCartList } from "../store/actions/cart";
+import { cartState } from "../store/reducer/cart";
 
 export const Cart = () => {
     const dispatch = useDispatch<AppDispatch>();
+    const { list } = useSelector(cartState);
 
     useEffect(() => {
-        dispatch(getCartList());
+        if (!list.length) dispatch(getCartList());
     });
 
     return (
@@ -47,4 +49,5 @@ const ContentsWrap = styled.div`
 const DeliveryController = styled.div`
     display: flex;
     flex-direction: column;
+    padding-top: 35px;
 `;

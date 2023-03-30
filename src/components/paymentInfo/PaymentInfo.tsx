@@ -77,7 +77,6 @@ export const PaymentInfo = () => {
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    padding-top: 35px;
     gap: 20px;
 `;
 
