@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CartList } from "../components/cartList/CartList";
@@ -8,8 +9,13 @@ import { getCartList } from "../store/actions/cart";
 import { cartState } from "../store/reducer/cart";
 
 export const Cart = () => {
+    const router = useRouter();
     const dispatch = useDispatch<AppDispatch>();
     const { list } = useSelector(cartState);
+
+    const handleNextRoute = () => {
+        router.push("/order");
+    };
 
     useEffect(() => {
         if (!list.length) dispatch(getCartList());
@@ -21,7 +27,7 @@ export const Cart = () => {
             <ContentsWrap>
                 <CartList />
                 <DeliveryController>
-                    <PaymentInfo />
+                    <PaymentInfo orderButtonAction={handleNextRoute} />
                 </DeliveryController>
             </ContentsWrap>
         </Container>
