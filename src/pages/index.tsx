@@ -49,8 +49,8 @@ function Home() {
             {isLoading ? (
                 <>
                     <Skeleton width="1550" height="370" />
-                    {[...Array(3)].map((_) => (
-                        <SkeletonRecommendedList />
+                    {[...Array(3)].map((_, i) => (
+                        <SkeletonRecommendedList key={i} />
                     ))}
                 </>
             ) : (
