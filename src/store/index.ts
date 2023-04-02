@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import type { PreloadedState } from "@reduxjs/toolkit";
+import { createWrapper } from "next-redux-wrapper";
 
 // slice
 import { modalStateSlice } from "./reducer/modal";
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
     cartState: cartStateSlice.reducer,
 });
 
-export const setupStore = (preloadedState?: PreloadedState<RootState>) =>
+export const setupStore = (preloadedState = {}) =>
     configureStore({
         reducer: rootReducer,
         preloadedState,
@@ -22,3 +22,4 @@ export const setupStore = (preloadedState?: PreloadedState<RootState>) =>
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppStore = ReturnType<typeof setupStore>;
 export type AppDispatch = AppStore["dispatch"];
+export const wrapper = createWrapper<AppStore>(setupStore);
