@@ -5,11 +5,15 @@ import { createWrapper } from "next-redux-wrapper";
 import { modalStateSlice } from "./reducer/modal";
 import { productStateSlice } from "./reducer/product";
 import { cartStateSlice } from "./reducer/cart";
+import { userInfoSlice } from "./reducer/user";
+import { paymentStateSlice } from "./reducer/payment";
 
 const rootReducer = combineReducers({
     modalState: modalStateSlice.reducer,
     productState: productStateSlice.reducer,
     cartState: cartStateSlice.reducer,
+    userInfoState: userInfoSlice.reducer,
+    paymentState: paymentStateSlice.reducer,
 });
 
 export const setupStore = (preloadedState = {}) =>

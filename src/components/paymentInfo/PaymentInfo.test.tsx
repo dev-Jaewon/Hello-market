@@ -4,14 +4,19 @@ import { PaymentInfo } from "./PaymentInfo";
 import { addCommaToNumber } from "../../utils/utils";
 
 describe("<PaymentInfo />", () => {
+    const orderClick = jest.fn();
+
     const renderComponent = () => {
-        const ins = renderWithProviders(<PaymentInfo />, {
-            preloadedState: {
-                cartState: {
-                    list: [cartMock()],
+        const ins = renderWithProviders(
+            <PaymentInfo orderButtonAction={orderClick} />,
+            {
+                preloadedState: {
+                    cartState: {
+                        list: [cartMock()],
+                    },
                 },
-            },
-        });
+            }
+        );
 
         const store = ins.store;
         const prouctPrice = ins.getByLabelText("상품금액");

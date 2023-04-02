@@ -53,7 +53,7 @@ export const OrderProduct = () => {
                 ) : (
                     <FoldItem>
                         <p>
-                            {checkedItemList[0].name}{" "}
+                            {checkedItemList[0]?.name}
                             {checkedItemList.length > 1 &&
                                 `외 ${checkedItemList.length - 1}개 `}
                             상품을 주문합니다.

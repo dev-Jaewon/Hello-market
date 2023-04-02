@@ -1,6 +1,8 @@
 import { rest } from "msw";
 import { carousel } from "./data/carousel";
+import { kakaoApprove } from "./data/kakaoPayment";
 
+const { kakaoPayment } = require("./data/kakaoPayment");
 const { recommededItems } = require("./data/recommenedList");
 const { product } = require("./data/product");
 const { review } = require("./data/review");
@@ -50,5 +52,19 @@ export const handlers = [
     rest.delete("/cart/:id", async (req, res, ctx) => {
         const id = req.params.id;
         return res(ctx.status(200));
+    }),
+
+    rest.post("/payment", async (req, res, ctx) => {
+        const orderlist = await req.json();
+
+        const getKakaoData = await kakaoPayment(orderlist);
+        return res(ctx.status(200), ctx.json({ ...getKakaoData.data }));
+    }),
+
+    rest.post("/payment/approve", async (req, res, ctx) => {
+        const data = await req.json();
+
+        const getKakaoData = await kakaoApprove(data);
+        return res(ctx.status(200), ctx.json({ ...getKakaoData.data }));
     }),
 ];
