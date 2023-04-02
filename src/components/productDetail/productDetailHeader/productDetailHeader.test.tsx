@@ -29,7 +29,7 @@ describe("<ProductDetailHeader>", () => {
 
     test("렌더링", () => {
         const { infoTab, descriptionTab, comentTab, inquiryTab } = component({
-            comentCount: 10,
+            reviewCount: 10,
             defaultTap: "description",
             inquiryRef: refEle,
             infoRefRef: refEle,
@@ -45,7 +45,7 @@ describe("<ProductDetailHeader>", () => {
 
     test("메뉴 클릭시 스크롤", () => {
         const { infoTab, descriptionTab, comentTab, inquiryTab } = component({
-            comentCount: 10,
+            reviewCount: 10,
             defaultTap: "description",
             inquiryRef: refEle,
             infoRefRef: refEle,

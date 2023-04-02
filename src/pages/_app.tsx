@@ -1,6 +1,6 @@
 import { AppProps } from "next/app";
 import { Provider } from "react-redux";
-import { setupStore } from "../store";
+import { wrapper } from "../store";
 
 import "../styles/global.css";
 import { Modal } from "../components/common/Modal";
@@ -11,12 +11,14 @@ if (process.env.NODE_ENV === "development") {
     require("../__mocks__");
 }
 
-export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+export default function MyApp({ Component, ...res }: AppProps): JSX.Element {
+    const { store, props } = wrapper.useWrappedStore(res);
+
     return (
         <>
-            <Provider store={setupStore()}>
+            <Provider store={store}>
                 <Header />
-                <Component {...pageProps} />
+                <Component {...props.pageProps} />
                 <Footer />
                 <Modal />
             </Provider>

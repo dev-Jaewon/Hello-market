@@ -4,7 +4,8 @@
     "version": "0.0.0",
     "scripts": {
         "dev": "next dev",
-        "build": "tsc && vite build",
+        "dev:prod": "next build && next start",
+        "build": "next build",
         "preview": "vite preview",
         "test": "jest",
         "test:watch": "jest --watchAll"
@@ -16,6 +17,7 @@
         "@reduxjs/toolkit": "^1.9.3",
         "axios": "^1.3.4",
         "next": "^13.2.3",
+        "next-redux-wrapper": "^8.1.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-icons": "^4.8.0",

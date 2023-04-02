@@ -13,3 +13,9 @@ export const cartMock = (): CartItem => {
 export const getCartMock = () => {
     return { list: [...Array(10)].map((_) => cartMock()) };
 };
+
+export const getTrueCheckedProduct = {
+    list: [...Array(10)].map((_) => {
+        return { ...cartMock(), checked: true };
+    }),
+};

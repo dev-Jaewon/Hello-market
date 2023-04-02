@@ -7,7 +7,11 @@ import { cartState } from "../../store/reducer/cart";
 import { addCommaToNumber } from "../../utils/utils";
 import { Button } from "../common/Button/Button";
 
-export const PaymentInfo = () => {
+export type PaymentInfoType = {
+    orderButtonAction: () => void;
+};
+
+export const PaymentInfo = (props: PaymentInfoType) => {
     const { list } = useSelector(cartState);
 
     const prices = useMemo(() => {
@@ -32,6 +36,10 @@ export const PaymentInfo = () => {
               )
             : { productPrice: 0, salePrice: 0, paymentAmount: 0 };
     }, [list]);
+
+    const handleOrderClick = () => {
+        props.orderButtonAction();
+    };
 
     return (
         <Container>
@@ -60,11 +68,14 @@ export const PaymentInfo = () => {
                     </h2>
                 </ItemPrice>
             </InfoContainer>
-            <Link href={"/order"}>
-                <Button width={285} height={55} fillColor>
-                    주문하기
-                </Button>
-            </Link>
+            <Button
+                width={285}
+                height={55}
+                fillColor
+                onClick={handleOrderClick}
+            >
+                주문하기
+            </Button>
             <OrderNotification>
                 {ORDER_NOTIFIE_CATION.map((content, i) => (
                     <p key={i}>{content}</p>
@@ -77,7 +88,6 @@ export const PaymentInfo = () => {
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    padding-top: 35px;
     gap: 20px;
 `;
 
