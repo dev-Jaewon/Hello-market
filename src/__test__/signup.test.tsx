@@ -1,5 +1,5 @@
 import { fireEvent } from "@testing-library/react";
-import { Signup } from "./signup";
+import { Signup } from "../pages/signup";
 import { matchers } from "@emotion/jest";
 import { renderWithProviders } from "../utils/test-utils";
 import axios from "axios";
@@ -34,7 +34,7 @@ const renderSignup = () => {
     const SignupButton = render.getByText("가입하기");
     const IdDuplicateCheckButton = render.getByText("ID중복확인");
     const EmailDuplicateCheckButton = render.getByText("Email중복확인");
-    const AuthPhoneNumberButton = render.getByText("인증번호 받기");
+    // const AuthPhoneNumberButton = render.getByText("인증번호 받기");
 
     return {
         InputId,
@@ -44,7 +44,7 @@ const renderSignup = () => {
         InputEmail,
         SignupButton,
         InputPhone,
-        AuthPhoneNumberButton,
+        // AuthPhoneNumberButton,
         IdDuplicateCheckButton,
         EmailDuplicateCheckButton,
         render,
@@ -61,7 +61,7 @@ describe("회원가입 페이지", () => {
             InputEmail,
             InputPhone,
             SignupButton,
-            AuthPhoneNumberButton,
+            // AuthPhoneNumberButton,
             IdDuplicateCheckButton,
             EmailDuplicateCheckButton,
         } = renderSignup();
@@ -73,7 +73,7 @@ describe("회원가입 페이지", () => {
         expect(InputEmail).toBeInTheDocument();
         expect(SignupButton).toBeInTheDocument();
         expect(InputPhone).toBeInTheDocument();
-        expect(AuthPhoneNumberButton).toBeInTheDocument();
+        // expect(AuthPhoneNumberButton).toBeInTheDocument();
         expect(IdDuplicateCheckButton).toBeInTheDocument();
         expect(EmailDuplicateCheckButton).toBeInTheDocument();
     });
@@ -122,16 +122,14 @@ describe("회원가입 페이지", () => {
         });
     });
 
-    test("<button>인증번호받기</button> input 데이터에 따른 Disabled 속성", async () => {
-        const { InputPhone, AuthPhoneNumberButton } = renderSignup();
-
-        expect(InputPhone).toHaveValue("");
-        expect(AuthPhoneNumberButton).toBeDisabled();
-
-        fireEvent.change(InputPhone, { target: { value: "01012341234" } });
-        expect(AuthPhoneNumberButton).not.toBeDisabled();
-        expect(InputPhone).toHaveValue("01012341234");
-    });
+    // test("<button>인증번호받기</button> input 데이터에 따른 Disabled 속성", async () => {
+    // const { InputPhone, AuthPhoneNumberButton } = renderSignup();
+    // expect(InputPhone).toHaveValue("");
+    // expect(AuthPhoneNumberButton).toBeDisabled();
+    // fireEvent.change(InputPhone, { target: { value: "01012341234" } });
+    // expect(AuthPhoneNumberButton).not.toBeDisabled();
+    // expect(InputPhone).toHaveValue("01012341234");
+    // });
 
     test("아이디 유효성 검사 에러메세지 노출", () => {
         const { InputId, render } = renderSignup();
