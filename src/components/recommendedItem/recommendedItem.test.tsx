@@ -8,27 +8,25 @@ jest.mock("next/router", () => require("next-router-mock"));
 
 describe("<recommendedItem />", () => {
     const renderComponent = (props: RecommendedItemType) => {
-        const { getByRole, getByLabelText, queryByLabelText } = render(
-            <RecommendedItem {...props} />,
-            { wrapper: MemoryRouterProvider }
-        );
+        const { getByRole, getByLabelText, queryByLabelText, getByTestId } =
+            render(<RecommendedItem {...props} />, {
+                wrapper: MemoryRouterProvider,
+            });
 
         const thumnail = getByRole("img");
-        const reviewIcon = getByLabelText("리뷰 아이콘");
-        const productName = getByLabelText("상품이름");
-        const discountRate = queryByLabelText("할인율");
-        const productPrice = getByLabelText("상품가격");
-        const comentLength = getByLabelText("리뷰숫자");
-        const productDescribe = getByLabelText("상품설명");
-        const addToCartIcon = getByLabelText("상품을 카트에 추가하는 아이콘");
-        const beforDiscountPrice = getByLabelText("할인전가격");
+        const productName = getByTestId("상품이름");
+        const productPrice = getByLabelText(/가격/);
+        const comentLength = getByLabelText(/리뷰/);
+        const productDescribe = getByTestId("상품설명");
+        const addToCartIcon = getByTestId("카트추가아이콘");
+        const beforDiscountPrice = getByTestId("할인전가격");
+        const reviewIcon = getByTestId("reviewIcon");
 
         return {
             thumnail,
             reviewIcon,
             productName,
             productPrice,
-            discountRate,
             addToCartIcon,
             comentLength,
             productDescribe,
@@ -43,7 +41,6 @@ describe("<recommendedItem />", () => {
         expect(el.thumnail).toBeInTheDocument();
         expect(el.reviewIcon).toBeInTheDocument();
         expect(el.productName).toBeInTheDocument();
-        expect(el.discountRate).toBeInTheDocument();
         expect(el.productPrice).toBeInTheDocument();
         expect(el.comentLength).toBeInTheDocument();
         expect(el.addToCartIcon).toBeInTheDocument();
