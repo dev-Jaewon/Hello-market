@@ -19,34 +19,39 @@ export const RecommendedItem = (props: RecommendedItemType) => {
     return (
         <Container href={`/product/${props.id}`}>
             <ImageContainer>
-                <img src={props.imgUrl} alt={props.name + "제품 이미지"} />
-                <CartIcon aria-label="상품을 카트에 추가하는 아이콘">
+                <img src={props.imgUrl} alt="" />
+                <CartIcon data-testid="카트추가아이콘">
                     <BsCart2 size="23px" />
                 </CartIcon>
             </ImageContainer>
-            <ProductDescribe aria-label="상품설명">
+            <ProductDescribe aria-hidden={true} data-testid="상품설명">
                 {props.description}
             </ProductDescribe>
-            <ProductName aria-label="상품이름">{props.name}</ProductName>
+            <ProductName data-testid="상품이름">{props.name}</ProductName>
             <PriceInfoContainer>
-                {props.disCountRate && (
-                    <DisCountRate aria-label="할인율">
+                {props.disCountRate > 0 && (
+                    <DisCountRate aria-label={`할인율${props.disCountRate}%`}>
                         {props.disCountRate}%
                     </DisCountRate>
                 )}
-                <Price aria-label="상품가격">
+                <Price aria-label={`가격${props.price}원`}>
                     {addCommaToNumber(props.price)}원
                 </Price>
             </PriceInfoContainer>
-            <BeforDiscountRate aria-label="할인전가격">
+            <BeforDiscountRate aria-hidden={true} data-testid="할인전가격">
                 {addCommaToNumber(props.beforeDiscountPrice)}원
             </BeforDiscountRate>
             <ReviewContainer>
                 <i>
-                    <BiMessageSquareDots size={15} aria-label="리뷰 아이콘" />
+                    <BiMessageSquareDots size={15} />
                 </i>
                 <p>후기</p>
-                <span aria-label="리뷰숫자">{props.comentLength}</span>
+                <span
+                    aria-label={`리뷰${props.comentLength}개`}
+                    data-testid="reviewIcon"
+                >
+                    {props.comentLength}
+                </span>
             </ReviewContainer>
         </Container>
     );
