@@ -8,6 +8,7 @@ export const NavCategory = () => {
 
     return (
         <NavCategoryContainer
+            onClick={() => setCategoryRender(true)}
             onMouseEnter={() => setCategoryRender(true)}
             onMouseLeave={() => setCategoryRender(false)}
         >
@@ -26,7 +27,7 @@ export const NavCategory = () => {
     );
 };
 
-const NavCategoryContainer = styled.div`
+const NavCategoryContainer = styled.button`
     position: relative;
     display: flex;
     height: 100%;
@@ -35,6 +36,8 @@ const NavCategoryContainer = styled.div`
     font-weight: 500;
     color: var(--black);
     gap: 10px;
+    background-color: unset;
+    border: none;
 
     i {
         transform: translate(0, 2px);

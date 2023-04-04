@@ -29,6 +29,7 @@ export const RecommendedList = (props: RecommendedListType) => {
         spaceBetween: 17,
         slidesPerView: 4,
         slidesPerGroup: 4,
+        wrapperTag: "ul",
         navigation: {
             nextEl: `.next-button-${props.id}`,
             prevEl: `.prev-button-${props.id}`,
@@ -40,13 +41,11 @@ export const RecommendedList = (props: RecommendedListType) => {
             {inViewPort ? (
                 <>
                     {props.title && (
-                        <RecommenedListTitle aria-label="추천 리스트 제목">
-                            {props.title}
-                        </RecommenedListTitle>
+                        <RecommenedListTitle>{props.title}</RecommenedListTitle>
                     )}
 
                     {props.description && (
-                        <RecommenedListDescription aria-label="추천 리스트 상품 설명">
+                        <RecommenedListDescription>
                             {props.description}
                         </RecommenedListDescription>
                     )}
@@ -64,10 +63,10 @@ export const RecommendedList = (props: RecommendedListType) => {
                         >
                             <IoIosArrowForward size={30} />
                         </i>
-                        <Swiper {...swiperSetProperty} aria-label="slider">
+                        <Swiper {...swiperSetProperty}>
                             {props.list &&
                                 props.list.map((item) => (
-                                    <SwiperSlide key={item.id}>
+                                    <SwiperSlide key={item.id} tag="li">
                                         <RecommendedItem {...item} />
                                     </SwiperSlide>
                                 ))}
@@ -75,7 +74,7 @@ export const RecommendedList = (props: RecommendedListType) => {
                     </SwiperContainer>
                 </>
             ) : (
-                <SkeletonRecommendedList />
+                <SkeletonRecommendedList aria-label="로딩 중" />
             )}
         </Container>
     );
@@ -131,7 +130,11 @@ const SwiperContainer = styled.div`
     }
 
     .swiper-wrapper {
-        width: 100%;
+        li {
+            &:not(:last-child) {
+                margin-right: 17px;
+            }
+        }
     }
 
     .swiper-slide {
@@ -152,7 +155,8 @@ const RecommenedListTitle = styled.h2`
     margin-bottom: 10px;
 `;
 
-const RecommenedListDescription = styled.p`
+const RecommenedListDescription = styled.h3`
+    text-align: center;
     font-size: 16px;
     color: rgb(153, 153, 153);
     margin-bottom: 10px;

@@ -45,21 +45,30 @@ export const Header = () => {
                     <Link href={"/signin"}>로그인</Link>
                 </AuthContainer>
                 <HeaderConcentsContainer>
-                    <Link href={"/"}>
+                    <Link href={"/"} aria-label="헬로 메인 이동링크">
                         <img
                             src="https://hello-market.s3.ap-northeast-2.amazonaws.com/image/logo.png"
-                            alt="logo image"
-                        ></img>
+                            alt=""
+                        />
                     </Link>
                     <SearchContainer>
                         <SearchBar />
                     </SearchContainer>
-                    <IconLink href={"/cart"} size={25} icon={BsCart2} />
+                    <IconLink
+                        href={"/cart"}
+                        size={25}
+                        icon={BsCart2}
+                        aria-label="카트이동"
+                    />
                 </HeaderConcentsContainer>
                 <MenuContainerShadow ref={menusRef}>
                     <div>
                         <NavCategory />
-                        <Menus role="menuList" scrollFold>
+                        <Menus
+                            role="menuList"
+                            scrollFold
+                            aria-label="추천메뉴리스트"
+                        >
                             {MENUS.map((menu) => (
                                 <NavItem
                                     key={menu.value}
@@ -69,7 +78,10 @@ export const Header = () => {
                             ))}
                         </Menus>
                         {!scrollFold ? (
-                            <GithubButton href="https://github.com/dev-Jaewon">
+                            <GithubButton
+                                href="https://github.com/dev-Jaewon"
+                                aria-label="깃허브이동"
+                            >
                                 <i>
                                     <BsGithub />
                                 </i>
@@ -82,6 +94,7 @@ export const Header = () => {
                                     href={"/cart"}
                                     size={25}
                                     icon={BsCart2}
+                                    aria-label="카트이동"
                                 />
                             </>
                         )}
