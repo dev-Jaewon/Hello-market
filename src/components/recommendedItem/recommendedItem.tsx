@@ -17,53 +17,56 @@ export type RecommendedItemType = {
 
 export const RecommendedItem = (props: RecommendedItemType) => {
     return (
-        <Container href={`/product/${props.id}`}>
-            <ImageContainer>
-                <img src={props.imgUrl} alt="" />
-                <CartIcon data-testid="카트추가아이콘">
-                    <BsCart2 size="23px" />
-                </CartIcon>
-            </ImageContainer>
-            <ProductDescribe aria-hidden={true} data-testid="상품설명">
-                {props.description}
-            </ProductDescribe>
-            <ProductName data-testid="상품이름">{props.name}</ProductName>
-            <PriceInfoContainer>
-                {props.disCountRate > 0 && (
-                    <DisCountRate aria-label={`할인율${props.disCountRate}%`}>
-                        {props.disCountRate}%
-                    </DisCountRate>
-                )}
-                <Price aria-label={`가격${props.price}원`}>
-                    {addCommaToNumber(props.price)}원
-                </Price>
-            </PriceInfoContainer>
-            <BeforDiscountRate aria-hidden={true} data-testid="할인전가격">
-                {addCommaToNumber(props.beforeDiscountPrice)}원
-            </BeforDiscountRate>
-            <ReviewContainer>
-                <i>
-                    <BiMessageSquareDots size={15} />
-                </i>
-                <p>후기</p>
-                <span
-                    aria-label={`리뷰${props.comentLength}개`}
-                    data-testid="reviewIcon"
-                >
-                    {props.comentLength}
-                </span>
-            </ReviewContainer>
+        <Container>
+            <Link href={`/product/${props.id}`}>
+                <ImageContainer>
+                    <img src={props.imgUrl} alt="" />
+                </ImageContainer>
+                <ProductDescribe aria-hidden={true} data-testid="상품설명">
+                    {props.description}
+                </ProductDescribe>
+                <ProductName data-testid="상품이름">{props.name}</ProductName>
+                <PriceInfoContainer>
+                    {props.disCountRate > 0 && (
+                        <DisCountRate
+                            aria-label={`할인율${props.disCountRate}퍼센트`}
+                        >
+                            {props.disCountRate}%
+                        </DisCountRate>
+                    )}
+                    <Price>{addCommaToNumber(props.price)}원</Price>
+                </PriceInfoContainer>
+                <BeforDiscountRate aria-hidden={true} data-testid="할인전가격">
+                    {addCommaToNumber(props.beforeDiscountPrice)}원
+                </BeforDiscountRate>
+                <ReviewContainer>
+                    <i>
+                        <BiMessageSquareDots size={15} />
+                    </i>
+                    <p>후기</p>
+                    <span
+                        aria-label={`리뷰${props.comentLength}개`}
+                        data-testid="reviewIcon"
+                    >
+                        {props.comentLength}
+                    </span>
+                </ReviewContainer>
+            </Link>
+            <CartIcon data-testid="카트추가아이콘" aria-label="장바구니넣기">
+                <BsCart2 size="23px" />
+            </CartIcon>
         </Container>
     );
 };
 
-const Container = styled(Link)`
+const Container = styled.div`
+    position: relative;
     display: flex;
     flex-direction: column;
     width: inherit;
     cursor: pointer;
 
-    &:hover {
+    & > a:hover {
         text-decoration: unset;
     }
 `;
@@ -88,7 +91,10 @@ const ImageContainer = styled.div`
     }
 `;
 
-const CartIcon = styled.i`
+const CartIcon = styled.button`
+    position: absolute;
+    top: 250px;
+    right: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,6 +104,8 @@ const CartIcon = styled.i`
     color: white;
     background-color: var(--brand);
     opacity: 0.6;
+    border: none;
+    cursor: pointer;
 
     &:hover {
         opacity: 1;

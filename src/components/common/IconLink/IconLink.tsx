@@ -11,8 +11,8 @@ export type IconLinkProps = {
 
 export const IconLink = (props: IconLinkProps) => {
     return (
-        <IconContainer aria-label={props["aria-label"]}>
-            <Link href={props.href}>
+        <IconContainer>
+            <Link href={props.href} aria-label={props["aria-label"]}>
                 <i className="cart" role="">
                     <props.icon size={props.size} />
                 </i>
